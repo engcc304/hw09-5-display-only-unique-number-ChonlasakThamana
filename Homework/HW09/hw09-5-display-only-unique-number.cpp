@@ -36,4 +36,43 @@
     Output:
         Unique value : 1 2 5 6
 
-*/
+*/#include <stdio.h>
+
+int main() {
+    int N;
+
+    // รับค่า N จากผู้ใช้
+    printf("Input N: ");
+    scanf("%d", &N);
+
+    // สร้างอาเรย์เพื่อเก็บข้อมูล
+    int arr[N];
+
+    // รับข้อมูลจากผู้ใช้และเพิ่มลงในอาเรย์
+    for (int i = 0; i < N; i++) {
+        printf("Input: ");
+        scanf("%d", &arr[i]);
+    }
+
+    // ตรวจสอบและแสดงค่าที่ไม่ซ้ำกัน
+    printf("Unique value: ");
+
+    for (int i = 0; i < N; i++) {
+        int isUnique = 1;
+
+        // ตรวจสอบว่าค่านี้มีการซ้ำกันหรือไม่
+        for (int j = 0; j < N; j++) {
+            if (i != j && arr[i] == arr[j]) {
+                isUnique = 0;
+                break;
+            }
+        }
+
+        // ถ้าไม่มีการซ้ำกันให้แสดงค่า
+        if (isUnique) {
+            printf("%d ", arr[i]);
+        }
+    }
+
+    return 0;
+}
