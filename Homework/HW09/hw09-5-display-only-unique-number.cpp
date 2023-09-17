@@ -36,7 +36,7 @@
     Output:
         Unique value : 1 2 5 6
 
-*/#include <stdio.h>
+*#include <stdio.h>
 
 int main() {
     int N;
@@ -54,22 +54,24 @@ int main() {
         scanf("%d", &arr[i]);
     }
 
-    // ตรวจสอบและแสดงค่าที่ไม่ซ้ำกัน
+    // ตรวจสอบและแสดงค่าที่ไม่ซ้ำกันและเรียงจากน้อยไปมาก
     printf("Unique value: ");
 
-    for (int i = 0; i < N; i++) {
-        int isUnique = 1;
-
-        // ตรวจสอบว่าค่านี้มีการซ้ำกันหรือไม่
-        for (int j = 0; j < N; j++) {
-            if (i != j && arr[i] == arr[j]) {
-                isUnique = 0;
-                break;
+    // ใช้ Bubble Sort เพื่อเรียงลำดับค่าในอาเรย์
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = 0; j < N - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // สลับค่าในกรณีที่มีค่าใหญ่กว่าอยู่ข้างหน้า
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
             }
         }
+    }
 
-        // ถ้าไม่มีการซ้ำกันให้แสดงค่า
-        if (isUnique) {
+    // แสดงผลลัพธ์ที่ไม่ซ้ำกัน
+    for (int i = 0; i < N; i++) {
+        if (i == 0 || arr[i] != arr[i - 1]) {
             printf("%d ", arr[i]);
         }
     }
